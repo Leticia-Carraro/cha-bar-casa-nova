@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lojinha do Cocadinha, Vyny e Leti</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<div class="top-bar">
+    <button class="toggle-sidebar-btn" onclick="toggleSidebar()">⋮</button>
+    <span class="top-bar-title">🎀 Lojinha do Cocadinha, Vyny e Leti 🎀</span>
+    <button onclick="logout()" class="logout-button">Sair</button>
+</div>
+
+<button class="toggle-sidebar-btn" onclick="toggleSidebar()">⋮</button>
+
+<body>
+    <div id="sidebar" class="sidebar">
+        <button class="close-sidebar-btn" onclick="toggleSidebar()">✖</button>
+        <br><br>
+        <h3>Filtros</h3>
+
+        <label for="price-filter">Preço Mínimo:</label><br>
+        <input type="text" id="min-price" placeholder="0">
+        <br>
+        <label for="price-filter">Preço Máximo:</label><br>
+        <input type="text" id="max-price" placeholder="1000">
+        <br><br>
+
+        <button id="toggle-purchases" class="toggle-btn" onclick="togglePurchases()">🛍️ Minhas Compras</button>
+
+        <br><br>
+
+    <p>Escolha um presente, clique em "Já comprei" e pronto! Se mudar de ideia, pode cancelar.</p>
+
+    <br><br>
+    
+        <button class="toggle-btn" onclick="toggleSuggestion()">🎁 Sugerir Presente</button>
+        <div id="suggestion-box" style="display: none;">
+            <p>Achou que a gente deixou passar algum presente essencial? Sem problema!</p>
+            <p>Nos mande um pix! O pix da Letícia é o celular dela (que você deve ter). Adicione na descrição do pix sua sugestão!</p>
+        </div>
+        <br><br><br><br><br>
+        <button onclick="help()" class="toggle-btn">Ajuda</button>
+        <button onclick="logout()" class="toggle-btn">Sair</button>
+
+    </div>
+
+    <div id="product-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
