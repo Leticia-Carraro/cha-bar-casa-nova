@@ -1,15 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const currentUser = localStorage.getItem("currentUser");
+      const firebaseConfig = {
+        apiKey: "AIzaSyD4KGUp6aMFskr7zUd2JzXJNU4bk0K6gQA",
+        authDomain: "cocadinha-c1d1c.firebaseapp.com",
+        projectId: "cocadinha-c1d1c",
+        storageBucket: "cocadinha-c1d1c.firebasestorage.app",
+        messagingSenderId: "816759287937",
+        appId: "1:816759287937:web:ed270f3374bc8f3e1d1d80",
+        measurementId: "G-R91K664RC6"
+      };
     
-            if (!currentUser) {
-                alert("Você precisa fazer login primeiro!");
-                window.location.href = "login.html"; // Redireciona para a página de login
-            }
+      firebase.initializeApp(firebaseConfig);
+    
+      document.addEventListener("DOMContentLoaded", function () {
+        firebase.auth().onAuthStateChanged((user) => {
+          if (!user) {
+            alert("Você precisa fazer login primeiro!");
+            window.location.href = "login.html";
+          }
         });
+      });
     </script>
     
     <meta charset="UTF-8">

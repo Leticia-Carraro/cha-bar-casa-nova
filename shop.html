@@ -1,20 +1,65 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const currentUser = localStorage.getItem("currentUser");
-    
-            if (!currentUser) {
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+        // Verifica se o usuário está logado
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
                 alert("Você precisa fazer login primeiro!");
-                window.location.href = "login.html"; // Redireciona para a página de login
+                window.location.href = "login.html";
+            } else {
+                console.log("Usuário logado:", user.uid);
+                // Aqui você pode carregar produtos ou compras do Firestore
             }
         });
+    
+        // Função de logout global
+        window.logout = () => {
+            signOut(auth).then(() => {
+                window.location.href = "login.html";
+            });
+        };     
     </script>    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lojinha do Cocadinha, Vyny e Leti</title>
     <link rel="stylesheet" href="style.css">
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+      
+        const firebaseConfig = {
+            apiKey: "AIzaSyD4KGUp6aMFskr7zUd2JzXJNU4bk0K6gQA",
+            authDomain: "cocadinha-c1d1c.firebaseapp.com",
+            projectId: "cocadinha-c1d1c",
+            storageBucket: "cocadinha-c1d1c.firebasestorage.app",
+            messagingSenderId: "816759287937",
+            appId: "1:816759287937:web:ed270f3374bc8f3e1d1d80",
+            measurementId: "G-R91K664RC6"
+        };
+      
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+      
+        // Exemplo de login
+        window.loginUser = async function (email, senha) {
+          try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, senha);
+            const user = userCredential.user;
+            console.log("Logado como", user.email);
+            // Redirecionar ou carregar dados
+          } catch (error) {
+            alert("Falha no login");
+          }
+        };
+      </script>
+      
 </head>
 
 <div class="top-bar">
