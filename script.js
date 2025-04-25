@@ -79,7 +79,7 @@ const products = [
 // Senha fixa para todos os usuários
 const correctPassword = "1234"; 
 let currentUser = null;
-let received_ids = [0, 4, 25, 40, 51, 60, 62, 65, 73] //Esse já ganhamos, muito obrigadaaa!!
+let received_ids = [0, 4, 25, 33, 35, 37, 38, 40, 51, 60, 62, 65, 73] //Esse já ganhamos, muito obrigadaaa!!
 let boughtProducts = JSON.parse(localStorage.getItem("boughtProducts")) || [];
 function login() {
     const username = document.getElementById("username").value;
